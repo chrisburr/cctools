@@ -245,6 +245,11 @@ INT64_T chirp_global_fchmod(struct chirp_file * file, INT64_T mode, time_t stopt
 	return chirp_reli_fchmod(file, mode, stoptime);
 }
 
+INT64_T chirp_global_fallocate(struct chirp_file * file, INT64_T mode, INT64_T offset, INT64_T len, time_t stoptime)
+{
+	return chirp_reli_fallocate(file, mode, offset, len, stoptime);
+}
+
 INT64_T chirp_global_ftruncate(struct chirp_file * file, INT64_T length, time_t stoptime)
 {
 	return chirp_reli_ftruncate(file, length, stoptime);

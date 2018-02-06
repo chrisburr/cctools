@@ -574,6 +574,13 @@ static INT64_T chirp_fs_confuga_fchmod(int fd, INT64_T mode)
 	FD_WRAP_CONFUGA_SIMPLE(confuga_chmod(C, path, mode));
 }
 
+static INT64_T chirp_fs_confuga_fallocate(int fd, int mode, INT64_T offset, INT64_T len)
+{
+	int rc;
+	SETUP_FILE
+	PROLOGUE
+}
+
 static INT64_T chirp_fs_confuga_ftruncate(int fd, INT64_T length)
 {
 	int rc;
@@ -657,6 +664,7 @@ struct chirp_filesystem chirp_fs_confuga = {
 	chirp_fs_confuga_fstatfs,
 	chirp_fs_confuga_fchown,
 	chirp_fs_confuga_fchmod,
+	chirp_fs_confuga_fallocate,
 	chirp_fs_confuga_ftruncate,
 	chirp_fs_confuga_fsync,
 

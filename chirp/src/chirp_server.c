@@ -1051,6 +1051,7 @@ static void chirp_handler(struct link *l, const char *addr, const char *subject)
 			result = 0;
 		} else if(sscanf(line, "fsync %" SCNd64, &fd) == 1) {
 			result = cfs->fsync(fd);
+		} else if(sscanf(line, "fallocate %" SCNd64 " %" SCNd64 " %" SCNd64 " %" SCNd64, &fd, &mode, &offset, &length) == 2) {
 		} else if(sscanf(line, "ftruncate %" SCNd64 " %" SCNd64, &fd, &length) == 2) {
 			if (length < 0) {
 				errno = EINVAL;

@@ -1356,6 +1356,11 @@ INT64_T chirp_client_fchown(struct chirp_client * c, INT64_T fd, INT64_T uid, IN
 	return simple_command(c, stoptime, "fchown %lld %lld %lld\n", fd, uid, gid);
 }
 
+INT64_T chirp_client_fallocate(struct chirp_client * c, INT64_T fd, INT64_T mode, INT64_T offset, INT64_T len, time_t stoptime)
+{
+	return simple_command(c, stoptime, "fallocare %lld %lld %lld %lld\n", fd, mode, offset, len);
+}
+
 INT64_T chirp_client_ftruncate(struct chirp_client * c, INT64_T fd, INT64_T length, time_t stoptime)
 {
 	return simple_command(c, stoptime, "ftruncate %lld %lld\n", fd, length);

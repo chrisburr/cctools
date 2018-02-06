@@ -503,6 +503,14 @@ static INT64_T chirp_fs_local_fchmod(int fd, INT64_T mode)
 	PROLOGUE
 }
 
+static INT64_T chirp_fs_local_fallocate(int fd, int mode, INT64_T offset, INT64_T len)
+{
+	PREAMBLE("ftruncate(%d, %d, %" PRId64 ", %" PRId64 ")", fd, mode, offset, len);
+	SETUP_FILE
+	rc = fallocate(lfd, mode, offset, len);
+	PROLOGUE
+}
+
 static INT64_T chirp_fs_local_ftruncate(int fd, INT64_T length)
 {
 	PREAMBLE("ftruncate(%d, %" PRId64 ")", fd, length);
@@ -1076,6 +1084,7 @@ struct chirp_filesystem chirp_fs_local = {
 	chirp_fs_local_fstatfs,
 	cfs_basic_fchown,
 	chirp_fs_local_fchmod,
+	chirp_fs_local_fallocate,
 	chirp_fs_local_ftruncate,
 	chirp_fs_local_fsync,
 

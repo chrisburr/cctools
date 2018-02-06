@@ -34,6 +34,7 @@ pfs_ssize_t	pfs_readv( int fd, const struct iovec *vector, int count );
 pfs_ssize_t	pfs_writev( int fd, const struct iovec *vector, int count );
 pfs_off_t	pfs_lseek( int fd, pfs_off_t offset, int whence );
 
+int		pfs_fallocate( int fd, int mode, pfs_off_t offset, pfs_off_t len );
 int		pfs_ftruncate( int fd, pfs_off_t length );
 int		pfs_fstat( int fd, struct pfs_stat *buf );
 int		pfs_fstatfs( int fd, struct pfs_statfs *buf );

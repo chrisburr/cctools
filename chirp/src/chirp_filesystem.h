@@ -40,6 +40,7 @@ struct chirp_filesystem {
 	INT64_T (*fstatfs)   ( int fd, struct chirp_statfs *buf );
 	INT64_T (*fchown)    ( int fd, INT64_T uid, INT64_T gid );
 	INT64_T (*fchmod)    ( int fd, INT64_T mode );
+	INT64_T (*fallocate) ( int fd, int mode, INT64_T offset, INT64_T len );
 	INT64_T (*ftruncate) ( int fd, INT64_T length );
 	INT64_T (*fsync)     ( int fd );
 

@@ -145,6 +145,12 @@ public:
 		return result;
 	}
 
+	virtual int fallocate( int mode, pfs_size_t offset, pfs_size_t length ) {
+		printf("Called pfs_file_cache.fallocate\n");
+		changed = 1;
+		return ::fallocate(fd, mode, offset, length);
+	}
+
 	virtual int ftruncate( pfs_size_t length ) {
 		changed = 1;
 		return ::ftruncate64(fd,length);

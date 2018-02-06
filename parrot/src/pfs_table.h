@@ -55,6 +55,7 @@ public:
 	pfs_ssize_t	writev( int fd, const struct iovec *vector, int count );
 	pfs_off_t	lseek( int fd, pfs_off_t offset, int whence );
 
+	int		fallocate( int fd, int mode, pfs_off_t offset, pfs_off_t length );
 	int		ftruncate( int fd, pfs_off_t length );
 	int		fstat( int fd, struct pfs_stat *buf );
 	int		fstatfs( int fd, struct pfs_statfs *buf );

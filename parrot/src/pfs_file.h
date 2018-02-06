@@ -24,6 +24,7 @@ public:
 	virtual	pfs_ssize_t write( const void *data, pfs_size_t length, pfs_off_t offset );
 	virtual int fstat( struct pfs_stat *buf );
 	virtual int fstatfs( struct pfs_statfs *buf );
+	virtual	int fallocate( int mode, pfs_size_t offset, pfs_size_t length );
 	virtual	int ftruncate( pfs_size_t length );
 	virtual	int fsync();
 	virtual int fcntl( int cmd, void *arg );

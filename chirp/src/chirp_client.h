@@ -38,6 +38,7 @@ INT64_T chirp_client_fstat(struct chirp_client *c, INT64_T fd, struct chirp_stat
 INT64_T chirp_client_fstatfs(struct chirp_client *c, INT64_T fd, struct chirp_statfs *buf, time_t stoptime);
 INT64_T chirp_client_fchown(struct chirp_client *c, INT64_T fd, INT64_T uid, INT64_T gid, time_t stoptime);
 INT64_T chirp_client_fchmod(struct chirp_client *c, INT64_T fd, INT64_T mode, time_t stoptime);
+INT64_T chirp_client_fallocate(struct chirp_client *c, INT64_T fd, INT64_T mode, INT64_T offset, INT64_T len, time_t stoptime);
 INT64_T chirp_client_ftruncate(struct chirp_client *c, INT64_T fd, INT64_T length, time_t stoptime);
 
 INT64_T chirp_client_getfile(struct chirp_client *c, const char *name, FILE * stream, time_t stoptime);

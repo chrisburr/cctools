@@ -180,6 +180,12 @@ static INT64_T chirp_fs_chirp_fchmod(int fd, INT64_T mode)
 	return chirp_reli_fchmod(file, mode, STOPTIME);
 }
 
+static INT64_T chirp_fs_chirp_fallocate(int fd, int mode, INT64_T offset, INT64_T len)
+{
+	SETUP_FILE
+	return chirp_reli_fallocate(file, mode, offset, len, STOPTIME);
+}
+
 static INT64_T chirp_fs_chirp_ftruncate(int fd, INT64_T length)
 {
 	SETUP_FILE
@@ -419,6 +425,7 @@ struct chirp_filesystem chirp_fs_chirp = {
 	chirp_fs_chirp_fstatfs,
 	chirp_fs_chirp_fchown,
 	chirp_fs_chirp_fchmod,
+	chirp_fs_chirp_fallocate,
 	chirp_fs_chirp_ftruncate,
 	chirp_fs_chirp_fsync,
 

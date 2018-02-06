@@ -1050,6 +1050,21 @@ int pfs_table::fchdir( int fd )
 	return result;
 }
 
+int pfs_table::fallocate( int fd, int mode, pfs_off_t offset, pfs_off_t size )
+{
+	int result = -1;
+
+	CHECK_FD(fd);
+
+	if( size<0 ) {
+		result = 0;
+	} else {
+		result = pointers[fd]->file->fallocate(mode, offset, size);
+	}
+
+	return result;
+}
+
 int pfs_table::ftruncate( int fd, pfs_off_t size )
 {
 	int result = -1;

@@ -52,6 +52,12 @@ int pfs_file::fstatfs( struct pfs_statfs *buf )
 	return 0;
 }
 
+int pfs_file::fallocate( int mode, pfs_size_t offset, pfs_size_t length )
+{
+	errno = EROFS;
+	return -1;
+}
+
 int pfs_file::ftruncate( pfs_size_t length )
 {
 	errno = EROFS;

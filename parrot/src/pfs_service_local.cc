@@ -167,6 +167,15 @@ public:
 		END
 	}
 
+	virtual int fallocate( int mode, pfs_size_t offset, pfs_size_t length ) {
+		printf("Called pfs_service_local.fallocate\n");
+		stats_inc("parrot.local.fallocate", 1);
+		int result;
+		debug(D_LOCAL,"fallocate %d %d %lld %lld",fd,mode,(long long)offset,(long long)length);
+		result = ::fallocate(fd, mode, offset, length);
+		END
+	}
+
 	virtual int ftruncate( pfs_size_t length ) {
 		stats_inc("parrot.local.ftruncate", 1);
 		int result;

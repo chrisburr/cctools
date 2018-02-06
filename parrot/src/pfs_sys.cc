@@ -145,6 +145,14 @@ pfs_off_t pfs_lseek( int fd, pfs_off_t offset, int whence )
 	END
 }
 
+int pfs_fallocate( int fd, int mode, pfs_off_t offset, pfs_off_t len )
+{
+	BEGIN
+	  debug(D_LIBCALL,"fallocate %d %d %lld %lld",fd,mode,(long long)offset,(long long)len);
+	result = pfs_current->table->fallocate(fd,mode,offset,len);
+	END
+}
+
 int pfs_ftruncate( int fd, pfs_off_t length )
 {
 	BEGIN

@@ -191,6 +191,17 @@ See @ref chirp_reli_setacl for alternate strong authorization control.
 
 INT64_T chirp_reli_fchmod(struct chirp_file *file, INT64_T mode, time_t stoptime);
 
+/** TODO
+@param file TODO
+@param mode TODO
+@param offset TODO
+@param len TODO
+@param stoptime TODO
+@see chirp_reli_open, chirp_reli_truncate
+*/
+
+INT64_T chirp_reli_fallocate(struct chirp_file *file, INT64_T mode, INT64_T offset, INT64_T len, time_t stoptime);
+
 /** Truncate an open file.
 @param file A chirp_file handle returned by chirp_reli_open.
 @param length The new length of the file.

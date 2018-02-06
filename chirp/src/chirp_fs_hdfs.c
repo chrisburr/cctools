@@ -476,6 +476,14 @@ static INT64_T chirp_fs_hdfs_fchmod(int fd, INT64_T mode)
 	return hdfs_services->chmod(fs, open_files[fd].path, mode);
 }
 
+static INT64_T chirp_fs_hdfs_fallocate(int fd, int mode, INT64_T offset, INT64_T len)
+{
+	SETUP_FILE
+	debug(D_HDFS, "NOT IMPLEMENTED: fallocate %d %"PRId64, fd, len);
+	errno = EACCES;
+	return -1;
+}
+
 static INT64_T chirp_fs_hdfs_ftruncate(int fd, INT64_T length)
 {
 	SETUP_FILE
@@ -722,6 +730,7 @@ struct chirp_filesystem chirp_fs_hdfs = {
 	chirp_fs_hdfs_fstatfs,
 	cfs_basic_fchown,
 	chirp_fs_hdfs_fchmod,
+	chirp_fs_hdfs_fallocate,
 	chirp_fs_hdfs_ftruncate,
 	chirp_fs_hdfs_fsync,
 

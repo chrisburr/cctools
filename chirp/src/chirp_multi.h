@@ -20,6 +20,7 @@ INT64_T chirp_multi_fstat(struct chirp_file *file, struct chirp_stat *buf, time_
 INT64_T chirp_multi_fstatfs(struct chirp_file *file, struct chirp_statfs *buf, time_t stoptime);
 INT64_T chirp_multi_fchown(struct chirp_file *file, INT64_T uid, INT64_T gid, time_t stoptime);
 INT64_T chirp_multi_fchmod(struct chirp_file *file, INT64_T mode, time_t stoptime);
+INT64_T chirp_multi_fallocate(struct chirp_file *file, INT64_T mode, INT64_T offset, INT64_T len, time_t stoptime);
 INT64_T chirp_multi_ftruncate(struct chirp_file *file, INT64_T length, time_t stoptime);
 INT64_T chirp_multi_flush(struct chirp_file *file, time_t stoptime);
 

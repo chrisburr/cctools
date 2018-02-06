@@ -1836,6 +1836,18 @@ static void decode_syscall( struct pfs_process *p, int entering )
 			}
 			break;
 
+		case SYSCALL64_fallocate:
+			if (p->table->isnative(args[0])) {
+				if (entering) debug(D_DEBUG, "fallthrough %s(%" PRId64 ", %" PRId64 ", %" PRId64 ")", tracer_syscall_name(p->tracer,p->syscall), args[0], args[1], args[2]);
+			} else if(entering) {
+				INT64_T offset = p->syscall == SYSCALL32_ftruncate64 ? args[1]+(((INT64_T)args[2])<<32) : args[1];
+				p->syscall_result = pfs_fallocate(args[0],args[1],args[2],args[3]);
+				if(p->syscall_result<0) p->syscall_result = -errno;
+				divert_to_dummy(p,p->syscall_result);
+			}
+			break;
+
+
 		case SYSCALL64_ftruncate:
 			if (p->table->isnative(args[0])) {
 				if (entering) debug(D_DEBUG, "fallthrough %s(%" PRId64 ", %" PRId64 ", %" PRId64 ")", tracer_syscall_name(p->tracer,p->syscall), args[0], args[1], args[2]);
@@ -3163,7 +3175,6 @@ static void decode_syscall( struct pfs_process *p, int entering )
 		case SYSCALL64_bpf:
 		case SYSCALL64_clock_adjtime:
 		case SYSCALL64_execveat:
-		case SYSCALL64_fallocate:
 		case SYSCALL64_fanotify_init:
 		case SYSCALL64_fanotify_mark:
 		case SYSCALL64_finit_module:

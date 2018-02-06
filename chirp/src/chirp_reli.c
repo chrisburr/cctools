@@ -413,6 +413,12 @@ INT64_T chirp_reli_fchmod( struct chirp_file *file, INT64_T mode, time_t stoptim
 	RETRY_FILE( result = chirp_client_fchmod(client,file->fd,mode,stoptime); )
 }
 
+INT64_T chirp_reli_fallocate( struct chirp_file *file, INT64_T mode, INT64_T offset, INT64_T len, time_t stoptime )
+{
+	chirp_reli_flush(file,stoptime);
+	RETRY_FILE( result = chirp_client_fallocate(client,file->fd,mode,offset,len,stoptime); )
+}
+
 INT64_T chirp_reli_ftruncate( struct chirp_file *file, INT64_T length, time_t stoptime )
 {
 	chirp_reli_flush(file,stoptime);
